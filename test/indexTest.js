@@ -3,6 +3,34 @@ import parse from '../src/index';
 
 describe('Parsing FEN function', () => {
 
+  context('checking "side to move"', () => {
+    let preString = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
+    let postString = 'KQkq - 0 1';
+
+    it('checks contains more than 1 letter', () => {
+      const notation = `${preString} wb ${postString}`;
+      const result = parse(notation);
+      expect(result).to.be.false;
+    });
+
+    it('checks valid letters', () => {
+      const notation1 = `${preString} w ${postString}`;
+      const notation2 = `${preString} b ${postString}`;
+
+      expect(parse(notation1)).to.be.true;
+      expect(parse(notation2)).to.be.true;
+    });
+
+    it('checks invalid letters', () => {
+      const inValidLetters = ['a', 'c', 'd', 'e', 'f', 'g', 'h'];
+      inValidLetters.forEach((letter) => {
+        const notation = `${preString} ${letter} ${postString}`;
+        const result = parse(notation);
+        expect(result).to.be.false;
+      });
+    });
+  });
+
   context('checking castling ability', () => {
     let preString = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w';
     let postString = '- 0 1';
@@ -80,4 +108,48 @@ describe('Parsing FEN function', () => {
     });
 
   });
+
+  context('checking half move clock', () => {
+    let preString = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -';
+    let postString = '1';
+
+    it('checks its valid in between 0 and 99', () => {
+      const validNumbers = [0, 1, 9, 66, 99, 53, 73, 10];
+      validNumbers.forEach((num) => {
+        const notation = `${preString} ${num} ${postString}`;
+        const result = parse(notation);
+        expect(result).to.be.true;
+      });
+    });
+    it('checks invalid range', () => {
+      const inValidNumbers = [-20, 222, 100, 700];
+      inValidNumbers.forEach((num) => {
+        const notation = `${preString} ${num} ${postString}`;
+        const result = parse(notation);
+        expect(result).to.be.false;
+      });
+    });
+  });
+
+  context('checking full move counter', () => {
+    let preString = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 88';
+
+    it('checks its valid in between 1 and 99', () => {
+      const validNumbers = [1, 9, 66, 99, 53, 73, 10];
+      validNumbers.forEach((num) => {
+        const notation = `${preString} ${num}`;
+        const result = parse(notation);
+        expect(result).to.be.true;
+      });
+    });
+    it('checks invalid range', () => {
+      const inValidNumbers = [-20, 222, 100, 700, 0];
+      inValidNumbers.forEach((num) => {
+        const notation = `${preString} ${num}`;
+        const result = parse(notation);
+        expect(result).to.be.false;
+      });
+    });
+  });
+
 });
