@@ -3,6 +3,8 @@ const validateSideToMove = (notation) => /w|b/.test(notation);
 
 const validateCastlingAbility = (notation) => /^-$|^(KQ?k?q?|Qk?q?|kq?|q)$/.test(notation);
 
+const validateEnPassantTarget = (notation) => /^(-|[a-h][36])$/.test(notation);
+
 const parseFEN = (fen) => {
   const fenArr = fen.split(' ');
   const [piecePlacement, sideToMove,
@@ -11,12 +13,9 @@ const parseFEN = (fen) => {
 
   return (fenArr.length === 6) &&
           validateSideToMove(fenArr[1]) &&
-          validateCastlingAbility(castlingAbility);
+          validateCastlingAbility(castlingAbility) &&
+          validateEnPassantTarget(enPassantTarget);
 }
 
 
 export default parseFEN;
-
-
-// https://github.com/oakmac/chessboardjs/blob/master/www/js/chess.js
-// https://chessprogramming.wikispaces.com/Forsyth-Edwards+Notation
