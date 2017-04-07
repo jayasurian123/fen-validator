@@ -7,17 +7,20 @@ const validateEnPassantTarget = (notation) => /^(-|[a-h][36])$/.test(notation);
 
 const validateHalfMoveClock = (notation) => /^([0-9]|[1-9][0-9])$/.test(notation);
 
+const validateFullMoveCounter = (notation) => /^([1-9][0-9]{0,1})$/.test(notation);
+
 const parseFEN = (fen) => {
   const fenArr = fen.split(' ');
   const [piecePlacement, sideToMove,
          castlingAbility, enPassantTarget,
-         halfMoveClock, ...rest] = fenArr;
+         halfMoveClock, fullMoveCounter] = fenArr;
 
   return (fenArr.length === 6) &&
           validateSideToMove(fenArr[1]) &&
           validateCastlingAbility(castlingAbility) &&
           validateEnPassantTarget(enPassantTarget) &&
-          validateHalfMoveClock(halfMoveClock);
+          validateHalfMoveClock(halfMoveClock) &&
+          validateFullMoveCounter(fullMoveCounter);
 }
 
 

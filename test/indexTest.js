@@ -109,7 +109,7 @@ describe('Parsing FEN function', () => {
 
   });
 
-  context('checking en passant target square', () => {
+  context('checking half move clock', () => {
     let preString = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -';
     let postString = '1';
 
@@ -125,6 +125,27 @@ describe('Parsing FEN function', () => {
       const inValidNumbers = [-20, 222, 100, 700];
       inValidNumbers.forEach((num) => {
         const notation = `${preString} ${num} ${postString}`;
+        const result = parse(notation);
+        expect(result).to.be.false;
+      });
+    });
+  });
+
+  context('checking full move counter', () => {
+    let preString = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 88';
+
+    it('checks its valid in between 1 and 99', () => {
+      const validNumbers = [1, 9, 66, 99, 53, 73, 10];
+      validNumbers.forEach((num) => {
+        const notation = `${preString} ${num}`;
+        const result = parse(notation);
+        expect(result).to.be.true;
+      });
+    });
+    it('checks invalid range', () => {
+      const inValidNumbers = [-20, 222, 100, 700, 0];
+      inValidNumbers.forEach((num) => {
+        const notation = `${preString} ${num}`;
         const result = parse(notation);
         expect(result).to.be.false;
       });
