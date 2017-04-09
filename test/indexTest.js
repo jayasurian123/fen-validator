@@ -3,6 +3,67 @@ import parse from '../src/index';
 
 describe('Parsing FEN function', () => {
 
+  context('validate piece placement', () => {
+    let postString = 'w KQkq - 0 1';
+
+    it('checks it contains 8 segments', () => {
+      let notation = `rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP ${postString}`;
+      let result = parse(notation);
+      expect(result).to.be.false;
+
+      notation = `rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR ${postString}`;
+      result = parse(notation);
+      expect(result).to.be.true;
+    });
+
+    context('rank', () => {
+      it('adds upto 8 in total', () => {
+        let result = parse(`rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR ${postString}`);
+        expect(result).to.be.true;
+
+        result = parse(`rnbqkbnr/pppppppp/7/8/8/8/PPPPPPPP/RNBQKBNR ${postString}`);
+        expect(result).to.be.false;
+
+        result = parse(`rnb4r/p1pp1ppp/8/8/8/8/2PPPP2/R3KB1R ${postString}`);
+        expect(result).to.be.true;
+
+        result = parse(`rnbq2nr/pppppppp/8/8/8/8/PPP1PPP1/R3KB1R ${postString}`);
+        expect(result).to.be.true;
+
+        result = parse(`rnbqkbnr/pppppppp/8/8/8/8/PP2PPPP/R3K2NR ${postString}`);
+        expect(result).to.be.false;
+      });
+
+      it('checks for continuous numbers', () => {
+        let result = parse(`rnbq11nr/ppp3pp/17/8/8/8/PPPPPPPP/RNBQKBNR ${postString}`);
+        expect(result).to.be.false;
+
+        result = parse(`rnbq1bn1/ppp31p/17/8/8/8/5PP1/RNBQKBNR ${postString}`);
+        expect(result).to.be.false;
+      });
+
+      it('checks for valid letters', () => {
+        let result = parse(`rnbq9bnr/8/8/8/8/8/8/8 ${postString}`);
+        expect(result).to.be.false;
+
+        result = parse(`rnbq7Tnr/8/8/8/8/8/8/8 ${postString}`);
+        expect(result).to.be.false;
+
+        result = parse(`8/rnbq1nnr/8/8/KQB2pRN/8/8/8 ${postString}`);
+        expect(result).to.be.true;
+
+        result = parse(`8/LnbqQnKr/8/8/8/8/8/8 ${postString}`);
+        expect(result).to.be.false;
+
+        result = parse(`8/8/8/8/8/8/8/KnbqQnKr ${postString}`);
+        expect(result).to.be.true;
+
+      });
+    });
+  });
+
+
+
   context('checking "side to move"', () => {
     let preString = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
     let postString = 'KQkq - 0 1';
@@ -50,7 +111,7 @@ describe('Parsing FEN function', () => {
       const result = parse(notation);
       expect(result).to.be.false;
     });
-    it('checks the denoting lettres', () => {
+    it('checks the denoting letters', () => {
       const notation = `${preString} JQkq ${postString}`;
       const result = parse(notation);
       expect(result).to.be.false;

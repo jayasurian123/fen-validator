@@ -1,4 +1,35 @@
 
+const validateRank = (notation) => {
+  const hasContinuousNumbers = /\d{2}/.test(notation);
+
+  const letters = notation.split('');
+
+  const hasOnlyValidLetters = () => {
+    return !letters.some((letter) => {
+      return !/[1-8]|[pkqbnrPKQBNR]/.test(letter);
+    });
+  };
+
+  const totalSquares = letters.reduce((total, letter) => {
+    const parsedLetter = parseInt(letter, 10);
+    const isInteger = Number.isInteger(parsedLetter);
+    return isInteger? (total + parsedLetter) : (total + 1);
+  }, 0);
+
+  return ( hasOnlyValidLetters() &&
+           !hasContinuousNumbers &&
+           totalSquares === 8 );
+}
+
+const validatePiecePlacement = (notation) => {
+  var ranks = notation.split('/');
+  if (ranks.length !== 8) return false;
+
+  return ranks.reduce(
+    (lastVal, rank) => lastVal && validateRank(rank),
+  true);
+}
+
 const validateSideToMove = (notation) => /^(w|b)$/.test(notation);
 
 const validateCastlingAbility = (notation) => /^-$|^(KQ?k?q?|Qk?q?|kq?|q)$/.test(notation);
@@ -16,7 +47,8 @@ const parseFEN = (fen) => {
          halfMoveClock, fullMoveCounter] = fenArr;
 
   return (fenArr.length === 6) &&
-          validateSideToMove(fenArr[1]) &&
+          validatePiecePlacement(piecePlacement) &&
+          validateSideToMove(sideToMove) &&
           validateCastlingAbility(castlingAbility) &&
           validateEnPassantTarget(enPassantTarget) &&
           validateHalfMoveClock(halfMoveClock) &&
