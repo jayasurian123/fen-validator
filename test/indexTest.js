@@ -62,8 +62,6 @@ describe('Parsing FEN function', () => {
     });
   });
 
-
-
   context('checking "side to move"', () => {
     let preString = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
     let postString = 'KQkq - 0 1';
@@ -167,7 +165,6 @@ describe('Parsing FEN function', () => {
         });
       });
     });
-
   });
 
   context('checking half move clock', () => {
@@ -210,6 +207,28 @@ describe('Parsing FEN function', () => {
         const result = parse(notation);
         expect(result).to.be.false;
       });
+    });
+  });
+
+  context('acid test', () => {
+    it('passes real examples', () => {
+      let notation ='4k3/8/8/8/8/8/4P3/4K3 w - - 5 39';
+      expect(parse(notation)).to.be.true;
+
+      notation ='8/8/8/8/5R2/2pk4/5K2/8 b - - 0 1';
+      expect(parse(notation)).to.be.true;
+
+      notation ='k7/8/8/4N3/8/8/8/3K4 b - - 13 56';
+      expect(parse(notation)).to.be.true;
+
+      notation ='1r2k1r1/pbppnp1p/1b3P2/8/Q7/B1PB1q2/P4PPP/3R2K1 w - - 0 21';
+      expect(parse(notation)).to.be.true;
+
+      notation ='rnbqkbnr/pp2pppp/8/2ppP3/8/8/PPPP1PPP/RNBQKBNR w KQkq d6 0 3';
+      expect(parse(notation)).to.be.true;
+
+      notation ='rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2';
+      expect(parse(notation)).to.be.true;
     });
   });
 
