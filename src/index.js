@@ -1,6 +1,14 @@
 
 const validateRank = (notation) => {
+  const hasContinuousNumbers = /\d{2}/.test(notation);
+
   const letters = notation.split('');
+
+  const hasOnlyValidLetters = () => {
+    return !letters.some((letter) => {
+      return !/[1-8]|[pkqbnrPKQBNR]/.test(letter);
+    });
+  };
 
   const totalSquares = letters.reduce((total, letter) => {
     const parsedLetter = parseInt(letter, 10);
@@ -8,7 +16,9 @@ const validateRank = (notation) => {
     return isInteger? (total + parsedLetter) : (total + 1);
   }, 0);
 
-  return (totalSquares === 8);
+  return ( hasOnlyValidLetters() &&
+           !hasContinuousNumbers &&
+           totalSquares === 8 );
 }
 
 const validatePiecePlacement = (notation) => {
