@@ -1,15 +1,15 @@
 {
   "name": "fen-validator",
   "version": "1.0.0",
-  "description": "Validate the FEN notation",
+  "description": "Validate the Chess FEN notation",
   "main": "index.js",
   "scripts": {
     "test": "npm run test:unit",
     "test:unit": "NODE_ENV=testing _mocha --opts test/mocha.opts",
     "test:watch": "npm run test:unit -- --watch"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Jayasurian Makkoth",
+  "license": "GNU General Public License v3.0",
   "devDependencies": {
     "babel-cli": "6.24.0",
     "babel-core": "6.24.0",
