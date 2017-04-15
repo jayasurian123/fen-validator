@@ -2,3 +2,7 @@
 
 # fen-validator
 Validate the Chess FEN notation
+
+## Trying out.
+- Pure functions
+- Mocha
