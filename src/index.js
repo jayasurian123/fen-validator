@@ -1,3 +1,4 @@
+import { curry } from 'ramda';
 
 const validateRank = (notation) => {
   const hasContinuousNumbers = /\d{2}/.test(notation);
@@ -30,15 +31,17 @@ const validatePiecePlacement = (notation) => {
   true);
 }
 
-const validateSideToMove = (notation) => /^(w|b)$/.test(notation);
+const check = curry((regex, str) => regex.test(str));
 
-const validateCastlingAbility = (notation) => /^-$|^(KQ?k?q?|Qk?q?|kq?|q)$/.test(notation);
+const validateSideToMove = check(/^(w|b)$/);
 
-const validateEnPassantTarget = (notation) => /^(-|[a-h][36])$/.test(notation);
+const validateCastlingAbility = check(/^-$|^(KQ?k?q?|Qk?q?|kq?|q)$/);
 
-const validateHalfMoveClock = (notation) => /^([0-9]|[1-9][0-9])$/.test(notation);
+const validateEnPassantTarget = check(/^(-|[a-h][36])$/);
 
-const validateFullMoveCounter = (notation) => /^([1-9][0-9]{0,1})$/.test(notation);
+const validateHalfMoveClock = check(/^([0-9]|[1-9][0-9])$/);
+
+const validateFullMoveCounter = check(/^([1-9][0-9]{0,1})$/);
 
 const parseFEN = (fen) => {
   const fenArr = fen.split(' ');
