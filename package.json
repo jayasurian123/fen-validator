@@ -2,8 +2,10 @@
   "name": "fen-validator",
   "version": "1.0.0",
   "description": "Validate the Chess FEN notation",
-  "main": "index.js",
+  "main": "./dist/main.js",
   "scripts": {
+    "build": "WEBPACK_ENV=build webpack",
+    "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch",
     "test": "npm run test:unit",
     "test:unit": "NODE_ENV=testing _mocha --opts test/mocha.opts",
     "test:watch": "npm run test:unit -- --watch"
