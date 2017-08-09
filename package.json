@@ -1,8 +1,13 @@
 {
   "name": "fen-validator",
   "version": "1.0.0",
-  "description": "Validate the Chess FEN notation",
+  "description": "Chess FEN notation validator",
   "main": "./dist/main.js",
+  "keywords": [
+    "chess",
+    "FEN notation",
+    "validator"
+  ],
   "scripts": {
     "build": "WEBPACK_ENV=build webpack",
     "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch",
@@ -10,8 +15,14 @@
     "test:unit": "NODE_ENV=testing _mocha --opts test/mocha.opts",
     "test:watch": "npm run test:unit -- --watch"
   },
-  "author": "Jayasurian Makkoth",
+  "authors": {
+    "name": "Jayasurian Makkoth"
+  },
   "license": "GNU General Public License v3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jayasurian123/fen-validator"
+  },
   "devDependencies": {
     "babel-cli": "6.24.0",
     "babel-core": "6.24.0",
