@@ -5,17 +5,16 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   module: {
     rules: [
       {
         test: '/\.js$/',
         include: [path.resolve(__dirname, 'src')],
-        loader: 'babel-loader',
-        options: {
-          presets: ['es2015']
-        }
+        loader: 'babel-loader'
       }
     ]
   }
