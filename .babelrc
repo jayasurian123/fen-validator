@@ -1,4 +1,3 @@
 {
-  "presets": ["es2015"],
-  "plugins": ["ramda"]
+  "presets": ["es2015"]
 }
