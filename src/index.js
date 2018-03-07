@@ -1,5 +1,3 @@
-import { curry } from 'ramda';
-
 const validateRank = (notation) => {
   const hasContinuousNumbers = /\d{2}/.test(notation);
 
@@ -30,6 +28,8 @@ const validatePiecePlacement = (notation) => {
     (lastVal, rank) => lastVal && validateRank(rank),
   true);
 }
+
+const curry = f => a => b => f(a, b);
 
 const check = curry((regex, str) => regex.test(str));
 
