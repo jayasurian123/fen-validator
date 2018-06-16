@@ -12,7 +12,7 @@
     "build": "WEBPACK_ENV=build webpack",
     "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch",
     "test": "npm run test:unit",
-    "test:unit": "NODE_ENV=testing _mocha --opts test/mocha.opts",
+    "test:unit": "jest test",
     "test:watch": "npm run test:unit -- --watch"
   },
   "authors": {
