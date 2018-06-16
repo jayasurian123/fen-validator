@@ -1,4 +1,4 @@
 --inline-diffs
 --reporter spec
---compilers js:babel-register
+--require babel-core/register
 test/**/*.js
