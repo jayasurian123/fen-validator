@@ -12,7 +12,7 @@
     "build": "WEBPACK_ENV=build webpack",
     "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch",
     "test": "npm run test:unit",
-    "test:unit": "NODE_ENV=testing _mocha --opts test/mocha.opts",
+    "test:unit": "jest test",
     "test:watch": "npm run test:unit -- --watch"
   },
   "authors": {
@@ -31,11 +31,8 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-es2015": "6.24.0",
     "babel-register": "6.24.0",
-    "chai": "3.5.0",
-    "mocha": "5.2.0",
+    "jest": "23.1.0",
     "path": "0.12.7",
-    "sinon": "2.1.0",
-    "sinon-chai": "2.9.0",
     "webpack": "2.3.2"
   }
 }
