@@ -10,8 +10,11 @@ Library to validate the Chess [FEN notation](https://en.wikipedia.org/wiki/Forsy
 
 # usage
 
-```
+```javaScript
 const validateFEN = require('fen-validator');
+
+// ES6
+import validateFEN from 'fen-validator';
 
 validateFEN('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1'); // true
 ```
