@@ -11,7 +11,7 @@ Library to validate the Chess [FEN notation](https://en.wikipedia.org/wiki/Forsy
 # usage
 
 ```javaScript
-const validateFEN = require('fen-validator');
+const validateFEN = require('fen-validator').default;
 
 // ES6
 import validateFEN from 'fen-validator';
