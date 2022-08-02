@@ -43,7 +43,12 @@ const validateHalfMoveClock = check(/^([0-9]|[1-9][0-9])$/);
 
 const validateFullMoveCounter = check(/^([1-9][0-9]{0,1})$/);
 
+const validateString = (string) => (typeof(string) === 'string');
+
 const parseFEN = (fen) => {
+  if(validateString(fen) === false){
+    return false
+  }
   const fenArr = fen.split(' ');
   const [piecePlacement, sideToMove,
          castlingAbility, enPassantTarget,
