@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - '10.22.1'
+  - "16.14.2"
 
 before_install:
-  - npm install -g npm@6.x
+  - npm install -g npm@8.x
 
 install:
   - npm install
