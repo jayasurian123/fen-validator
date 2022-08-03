@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jayasurian123/fen-validator.svg?branch=master)](https://travis-ci.org/jayasurian123/fen-validator)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/jayasurian123/fen-validator/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/jayasurian123/fen-validator/tree/master)
 
 # fen-validator
 
