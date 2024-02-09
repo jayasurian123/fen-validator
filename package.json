@@ -1,39 +1,15 @@
 {
   "name": "fen-validator",
-  "version": "1.4.2",
-  "description": "Chess FEN notation validator",
-  "main": "./dist/main.js",
-  "keywords": [
-    "chess",
-    "FEN notation",
-    "validator"
-  ],
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "WEBPACK_ENV=build webpack",
-    "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch",
-    "test": "npm run test:unit",
-    "test:unit": "jest test",
-    "test:watch": "npm run test:unit -- --watch"
-  },
-  "authors": {
-    "name": "Jayasurian Makkoth"
-  },
-  "license": "GNU General Public License v3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jayasurian123/fen-validator"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.0",
-    "@babel/core": "^7.12.0",
-    "@babel/polyfill": "^7.12.0",
-    "@babel/preset-env": "^7.12.0",
-    "@babel/register": "^7.12.0",
-    "babel-jest": "^26.6.0",
-    "babel-loader": "^8.2.0",
-    "jest": "^26.6.0",
-    "path": "0.12.7",
-    "webpack": "5.5.0",
-    "webpack-cli": "4.2.0"
+    "typescript": "^5.2.2",
+    "vite": "^5.1.0"
   }
 }

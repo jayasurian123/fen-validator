@@ -1,6 +1,0 @@
-node_modules
-test
-webpack.config.js
-src
-.babelrc
-.travis.yml
