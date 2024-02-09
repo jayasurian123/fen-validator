@@ -3,13 +3,13 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@5.0.2
+  node: circleci/node@5.2.0
 
 jobs:
   run-tests:
     executor:
       name: node/default
-      tag: "16.14.2"
+      tag: '20.9.0'
     steps:
       - checkout
       - node/install-packages
