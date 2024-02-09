@@ -1,8 +1,28 @@
 {
   "name": "fen-validator",
-  "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "chess",
+    "FEN notation",
+    "validator"
+  ],
+  "authors": {
+    "name": "Jayasurian Makkoth"
+  },
+  "license": "GNU General Public License v3.0",
+  "main": "./dist/fen-validator.cjs",
+  "module": "./dist/fen-validator.js",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/fen-validator.js",
+      "require": "./dist/fen-validator.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,5 +31,9 @@
   "devDependencies": {
     "typescript": "^5.2.2",
     "vite": "^5.1.0"
+  },
+  "dependencies": {
+    "pathe": "^1.1.2",
+    "vite-plugin-dts": "^3.7.2"
   }
 }
