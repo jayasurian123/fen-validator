@@ -1,7 +1,7 @@
-import parse from '../src/index';
+import { describe, expect, test } from 'vitest';
+import parse from '../src/main';
 
 describe('Parsing FEN function', () => {
-
   describe('validate piece placement', () => {
     let postString = 'w KQkq - 0 1';
 
@@ -17,24 +17,34 @@ describe('Parsing FEN function', () => {
 
     describe('rank', () => {
       test('adds upto 8 in total', () => {
-        let result = parse(`rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR ${postString}`);
+        let result = parse(
+          `rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR ${postString}`
+        );
         expect(result).toBe(true);
 
-        result = parse(`rnbqkbnr/pppppppp/7/8/8/8/PPPPPPPP/RNBQKBNR ${postString}`);
+        result = parse(
+          `rnbqkbnr/pppppppp/7/8/8/8/PPPPPPPP/RNBQKBNR ${postString}`
+        );
         expect(result).toBe(false);
 
         result = parse(`rnb4r/p1pp1ppp/8/8/8/8/2PPPP2/R3KB1R ${postString}`);
         expect(result).toBe(true);
 
-        result = parse(`rnbq2nr/pppppppp/8/8/8/8/PPP1PPP1/R3KB1R ${postString}`);
+        result = parse(
+          `rnbq2nr/pppppppp/8/8/8/8/PPP1PPP1/R3KB1R ${postString}`
+        );
         expect(result).toBe(true);
 
-        result = parse(`rnbqkbnr/pppppppp/8/8/8/8/PP2PPPP/R3K2NR ${postString}`);
+        result = parse(
+          `rnbqkbnr/pppppppp/8/8/8/8/PP2PPPP/R3K2NR ${postString}`
+        );
         expect(result).toBe(false);
       });
 
       test('checks for continuous numbers', () => {
-        let result = parse(`rnbq11nr/ppp3pp/17/8/8/8/PPPPPPPP/RNBQKBNR ${postString}`);
+        let result = parse(
+          `rnbq11nr/ppp3pp/17/8/8/8/PPPPPPPP/RNBQKBNR ${postString}`
+        );
         expect(result).toBe(false);
 
         result = parse(`rnbq1bn1/ppp31p/17/8/8/8/5PP1/RNBQKBNR ${postString}`);
@@ -56,7 +66,6 @@ describe('Parsing FEN function', () => {
 
         result = parse(`8/8/8/8/8/8/8/KnbqQnKr ${postString}`);
         expect(result).toBe(true);
-
       });
     });
   });
@@ -143,7 +152,6 @@ describe('Parsing FEN function', () => {
         const result = parse(notation);
         expect(result).toBe(false);
       });
-
     });
     describe('when has 2 letters', () => {
       test('checks the first letter is from the range [a - h]', () => {
@@ -211,24 +219,24 @@ describe('Parsing FEN function', () => {
 
   describe('acid test', () => {
     test('passes real examples', () => {
-      let notation ='4k3/8/8/8/8/8/4P3/4K3 w - - 5 39';
+      let notation = '4k3/8/8/8/8/8/4P3/4K3 w - - 5 39';
       expect(parse(notation)).toBe(true);
 
-      notation ='8/8/8/8/5R2/2pk4/5K2/8 b - - 0 1';
+      notation = '8/8/8/8/5R2/2pk4/5K2/8 b - - 0 1';
       expect(parse(notation)).toBe(true);
 
-      notation ='k7/8/8/4N3/8/8/8/3K4 b - - 13 56';
+      notation = 'k7/8/8/4N3/8/8/8/3K4 b - - 13 56';
       expect(parse(notation)).toBe(true);
 
-      notation ='1r2k1r1/pbppnp1p/1b3P2/8/Q7/B1PB1q2/P4PPP/3R2K1 w - - 0 21';
+      notation = '1r2k1r1/pbppnp1p/1b3P2/8/Q7/B1PB1q2/P4PPP/3R2K1 w - - 0 21';
       expect(parse(notation)).toBe(true);
 
-      notation ='rnbqkbnr/pp2pppp/8/2ppP3/8/8/PPPP1PPP/RNBQKBNR w KQkq d6 0 3';
+      notation = 'rnbqkbnr/pp2pppp/8/2ppP3/8/8/PPPP1PPP/RNBQKBNR w KQkq d6 0 3';
       expect(parse(notation)).toBe(true);
 
-      notation ='rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2';
+      notation =
+        'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2';
       expect(parse(notation)).toBe(true);
     });
   });
-
 });
